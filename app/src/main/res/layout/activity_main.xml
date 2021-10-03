@@ -27,6 +27,7 @@
         android:id="@+id/launchButton"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:onClick="runTheSimulation"
         android:text="@string/ButtonText"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
