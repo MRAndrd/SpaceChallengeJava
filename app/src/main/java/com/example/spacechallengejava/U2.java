@@ -6,8 +6,8 @@ public class U2 extends Rocket {
 
     public U2 () {
         rocketCost = 120;
-        rocketWeight = 18;
-        maxWeight = 29;
+        rocketWeight = 18000;
+        maxWeight = 29000;
     }
 
     @Override

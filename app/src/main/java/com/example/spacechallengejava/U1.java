@@ -6,8 +6,8 @@ public int chanceOfLandingCrashU1 = 1 * (rocketCanCarry / maxWeight);
 
 public U1 () {
     rocketCost = 100;
-    rocketWeight = 10;
-    maxWeight = 18;
+    rocketWeight = 10000;
+    maxWeight = 18000;
 }
 
     @Override
