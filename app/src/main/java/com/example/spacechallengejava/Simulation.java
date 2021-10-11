@@ -1,7 +1,11 @@
 package com.example.spacechallengejava;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,13 +13,17 @@ public class Simulation {
     // щоб поділити строку на частини
     String[] oneLine;
 
-    public Simulation(MainActivity mainActivity) {
+    private Context context;
+
+    public Simulation(Context context) {
+        this.context = context;
     }
 
-    public ArrayList<Item> loadItems() throws FileNotFoundException {
+    public ArrayList<Item> loadItems(String fileName) throws IOException {
+        AssetManager phaseFileName = context.getAssets();
         ArrayList<Item> goods = new ArrayList<>();
-        File file = new File("Phase-1.txt");
-        Scanner fileScanner = new Scanner(file);
+
+        Scanner fileScanner = new Scanner(phaseFileName.open(fileName));
 
         while (fileScanner.hasNextLine()) {
             oneLine = fileScanner.nextLine().split("=");
@@ -24,50 +32,48 @@ public class Simulation {
         }
         return goods;
     }
-
-    public ArrayList<Rocket> loadU1(ArrayList<Item> goods, ArrayList<Item> loadItems) {
-        ArrayList<Rocket> listOfU1RocketsU1 = new ArrayList<>();
+    public ArrayList<Rocket> loadU1(ArrayList<Item> goods) {
+        ArrayList<Rocket> listOfU1Rockets = new ArrayList<>();
         U1 U1rocket = new U1();
 
         for (Item item : goods) {
 
             if (!U1rocket.canCarry(item)) {
-                listOfU1RocketsU1.add(U1rocket);
+                listOfU1Rockets.add(U1rocket);
                 U1rocket = new U1();
             }
             U1rocket.carry(item);
         }
-        listOfU1RocketsU1.add(U1rocket);
+        listOfU1Rockets.add(U1rocket);
 
-        return listOfU1RocketsU1;
+        return listOfU1Rockets;
 
     }
 
-    public ArrayList<Rocket> loadU2(ArrayList<Item> goods, ArrayList<Item> loadItems) {
-        ArrayList<Rocket> listOfU1RocketsU2 = new ArrayList<>();
+    public ArrayList<Rocket> loadU2(ArrayList<Item> goods) {
+        ArrayList<Rocket> listOfU2Rockets = new ArrayList<>();
         U2 U2rocket = new U2();
 
         for (Item item : goods) {
 
             if (!U2rocket.canCarry(item)) {
-                listOfU1RocketsU2.add(U2rocket);
+                listOfU2Rockets.add(U2rocket);
                 U2rocket = new U2();
             }
             U2rocket.carry(item);
         }
-        listOfU1RocketsU2.add(U2rocket);
+        listOfU2Rockets.add(U2rocket);
 
-        return listOfU1RocketsU2;
+        return listOfU2Rockets;
     }
-    public int runSimulation (ArrayList<Rocket> listOfU1RocketsU1, ArrayList<Rocket> listOfU1RocketsU2 ) {
+    public int runSimulation (ArrayList<Rocket> rockets ) {
         int totalBudget = 0;
 
-        Rocket rocket1 = new U1(); {
-            if (!rocket1.land() || !rocket1.launch()) {
-                totalBudget += Rocket.getRocketCost();
-            }
-            return totalBudget;
+        for (Rocket rocket1 : rockets) {
+            do {
+                totalBudget = totalBudget + rocket1.getRocketCost();
+            } while (!rocket1.launch() || rocket1.land());
         }
+    return totalBudget;
     }
-
 }

@@ -1,15 +1,11 @@
 package com.example.spacechallengejava;
 
 public class Rocket implements SpaceShip {
-    public static int rocketCost;
+    public int rocketCost;
     public int rocketWeight;
     public int maxWeight;
-    public int rocketCanCarry = maxWeight - rocketWeight;
-
-    public static int getRocketCost() {
-        return rocketCost;
-    }
-
+    public int cargoLimit;
+    public int cargoCarried;
 
     @Override
     public boolean launch() {
@@ -35,4 +31,8 @@ public class Rocket implements SpaceShip {
         rocketWeight = rocketWeight+ item.weight;
         return rocketWeight;
     };
+
+    int getRocketCost() {
+        return this.rocketCost;
+    }
 }

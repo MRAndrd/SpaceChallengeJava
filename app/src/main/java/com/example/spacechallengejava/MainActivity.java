@@ -26,8 +26,16 @@ public class MainActivity extends AppCompatActivity {
     }
   public void runTheSimulation(View view) throws Exception {
         //не розумію чому (mainSimulation.loadItems()) - 'loadU1(java.util.ArrayList , java.util.ArrayList )' in 'com.example.spacechallengejava.Simulation' cannot be applied to '(java.util.ArrayList )'
-      totalBudgetU1 = mainSimulation.runSimulation(mainSimulation.loadU1(mainSimulation.loadItems()));
-      totalBudgetU2 = mainSimulation.runSimulation(mainSimulation.loadU2(mainSimulation.loadItems()));
+      ArrayList<Item> phase1 = mainSimulation.loadItems("Phase-1.txt");
+      ArrayList<Item> phase2 = mainSimulation.loadItems("Phase-2.txt");
+      ArrayList<Rocket> U1Phase1 = mainSimulation.loadU1(phase1);
+      ArrayList<Rocket> U1Phase2 = mainSimulation.loadU1(phase2);
+      ArrayList<Rocket> U2Phase1 = mainSimulation.loadU2(phase1);
+      ArrayList<Rocket> U2Phase2 = mainSimulation.loadU2(phase2);
+
+      totalBudgetU1 = mainSimulation.runSimulation(U1Phase1) + mainSimulation.runSimulation(U1Phase2);
+      totalBudgetU2 = mainSimulation.runSimulation(U2Phase1) + mainSimulation.runSimulation(U2Phase2);
+
       U1TextView.setText(totalBudgetU1 + "millions");
       U2TextView.setText(totalBudgetU2 + "millions");
   }

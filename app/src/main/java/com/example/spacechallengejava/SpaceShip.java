@@ -1,8 +1,8 @@
 package com.example.spacechallengejava;
 
-public interface SpaceShip {
-    public boolean launch();
-    public boolean land();
-    public boolean canCarry(Item item);
-    public int carry(Item item);
+interface SpaceShip {
+    boolean launch();
+    boolean land();
+    boolean canCarry(Item item);
+    int carry(Item item);
 }

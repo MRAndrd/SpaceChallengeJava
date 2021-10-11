@@ -8,12 +8,4 @@ public class Item {
         this.name = name;
         this.weight = weight;
     }
-
-    public Item() {
-        this.name = name;
-        this.weight = weight;
-    }
-
-    public void add(Item item) {
-    }
 }

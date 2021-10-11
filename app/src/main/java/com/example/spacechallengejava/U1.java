@@ -1,13 +1,14 @@
 package com.example.spacechallengejava;
 
 public class U1 extends Rocket {
-public int chanceOfLaunchExplosionU1 = 5 * (rocketCanCarry / maxWeight);
-public int chanceOfLandingCrashU1 = 1 * (rocketCanCarry / maxWeight);
+public int chanceOfLaunchExplosionU1 = 5 * (cargoCarried / cargoLimit);
+public int chanceOfLandingCrashU1 = 1 * (cargoCarried / cargoLimit);
 
 public U1 () {
     rocketCost = 100;
     rocketWeight = 10000;
     maxWeight = 18000;
+    cargoLimit = 8000;
 }
 
     @Override
