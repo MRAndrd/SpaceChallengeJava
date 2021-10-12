@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         U2TextView = (TextView) findViewById(R.id.U2TextView);
     }
   public void runTheSimulation(View view) throws Exception {
-        //не розумію чому (mainSimulation.loadItems()) - 'loadU1(java.util.ArrayList , java.util.ArrayList )' in 'com.example.spacechallengejava.Simulation' cannot be applied to '(java.util.ArrayList )'
+
       ArrayList<Item> phase1 = mainSimulation.loadItems("Phase-1.txt");
       ArrayList<Item> phase2 = mainSimulation.loadItems("Phase-2.txt");
       ArrayList<Rocket> U1Phase1 = mainSimulation.loadU1(phase1);
