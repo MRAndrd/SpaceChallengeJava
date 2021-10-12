@@ -1,8 +1,6 @@
 package com.example.spacechallengejava;
 
 public class U2 extends Rocket {
-    public int chanceOfLaunchExplosionU2 = 4 * (cargoCarried / cargoLimit);
-    public int chanceOfLandingCrashU2 = 8 * (cargoCarried / cargoLimit);
 
     public U2 () {
         rocketCost = 120;
@@ -14,19 +12,14 @@ public class U2 extends Rocket {
     @Override
     public boolean launch() {
         int random = (int)(Math.random() * 100 + 1);
-        if(random > chanceOfLaunchExplosionU2) {
-            return true;
-        } else {
-            return false;
-        }
+        int chanceOfLaunchExplosionU2 = 4 * (cargoCarried / cargoLimit);
+            return random > chanceOfLaunchExplosionU2;
     }
+
     @Override
     public boolean land() {
         int random = (int)(Math.random() * 100 + 1);
-        if(random > chanceOfLandingCrashU2) {
-            return true;
-        } else {
-            return false;
-        }
+        int chanceOfLandingCrashU2 = 8 * (cargoCarried / cargoLimit);
+            return random > chanceOfLandingCrashU2;
     }
 }
